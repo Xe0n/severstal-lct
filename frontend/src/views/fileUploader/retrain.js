@@ -3,7 +3,7 @@
 import { useState, Fragment } from 'react'
 
 // ** Reactstrap Imports
-import { Card, CardHeader, CardTitle, CardBody, Button, ListGroup, ListGroupItem, Form, Progress, Spinner } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardBody, Button, ListGroup, ListGroupItem, Form, Progress, Spinner, Alert } from 'reactstrap'
 
 // ** Third Party Imports
 import { useDropzone } from 'react-dropzone'
@@ -16,6 +16,7 @@ const FileUploaderRetrain = () => {
   const [files, setFiles] = useState([])
   const [progress, setProgress] = useState(0)
   const [result, setResult] = useState({})
+  const [notion, setNotion] = useState(false)
 //   const [loadingClicked, setLoadingClicked] = useState()
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -56,6 +57,7 @@ const FileUploaderRetrain = () => {
   }
 
   const fileList = files.map((file, index) => (
+    <>
     <ListGroupItem key={`${file.name}-${index}`} className='d-flex align-items-center justify-content-between'>
       <div className='file-details d-flex align-items-center'>
         <div className='file-preview me-1'>{renderFilePreview(file)}</div>
@@ -68,6 +70,8 @@ const FileUploaderRetrain = () => {
         <X size={14} />
       </Button>
     </ListGroupItem>
+   </>
+    
   ))
 
   const handleRemoveAllFiles = () => {
@@ -137,8 +141,17 @@ const FileUploaderRetrain = () => {
               <Button className='me-1' color='danger' outline onClick={handleRemoveAllFiles}>
                 Удалить
               </Button>
-              <Button color='primary' onClick={handleSubmit}>Загрузить файл</Button>
+              <Button color='primary' onClick={() => setNotion(true)}>Загрузить файл</Button>
             </div>
+            <Alert color="primary" className={`mt-2 ${!notion ? 'd-none' : ''}`}>
+              <div className="alert-body">
+                <span className="fw-bold">Внимание!</span>
+                <span>
+                  {" "}
+                  Этот модуль мы доделаем после прохода в ТОП-10. 🤫
+                </span>
+              </div>
+            </Alert>
           </Fragment>
         ) : null}
         <div className='mt-3'>

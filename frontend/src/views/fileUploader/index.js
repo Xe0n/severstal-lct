@@ -2,7 +2,7 @@
 import { useState, Fragment } from 'react'
 
 // ** Reactstrap Imports
-import { Card, CardHeader, CardTitle, CardBody, Button, ListGroup, ListGroupItem, Form, Progress, Spinner } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardBody, Button, ListGroup, ListGroupItem, Form, Progress, Spinner, Alert } from 'reactstrap'
 
 // ** Third Party Imports
 import { useDropzone } from 'react-dropzone'
@@ -153,6 +153,7 @@ const FileUploaderSingle = ({getData}) => {
     <Card>
         {result.filename}
     </Card>
+    
     </Form>
   )
 }
