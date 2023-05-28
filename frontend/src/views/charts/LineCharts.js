@@ -32,8 +32,8 @@ const SimpleLineChart = ({ data, target, warning }) => {
     <Card>
       <CardHeader>
         <div>
-          <CardTitle tag='h4'>Прогнозная аналитика экскаустера 1</CardTitle>
-          <small className='text-muted'>Выберите нужный диапазон для демонстрации работы. По умолчанию выводится последняя неделя</small>
+          <CardTitle tag='h4'>Анализ событий M1/M3 на основе исторических данных</CardTitle>
+          <small className='text-muted'>Выберите нужный диапазон и деталь для демонстрации работы. По умолчанию выводится последняя неделя</small>
         </div>
       </CardHeader>
 
@@ -43,7 +43,16 @@ const SimpleLineChart = ({ data, target, warning }) => {
             <LineChart height={100} data={codes}>
               <CartesianGrid />
               <XAxis dataKey='date' />
-              <YAxis />
+              <YAxis
+              allowDecimals={false}
+              tickFormatter={(value) => {
+                if (value === 0) return '0'
+                if (value === 1) return 'M1'
+                if (value === 3) return 'M3'
+                return ''
+                }
+              }
+              />
               <Tooltip content={CustomTooltip} />
               <Line dataKey='count' stroke={warning} strokeWidth={3} />
               <Brush />

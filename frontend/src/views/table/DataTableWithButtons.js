@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 // ** Table columns & Expandable Data
-import ExpandableTable, { data, columns } from './data'
+import ExpandableTable, { columns } from './data'
 
 // ** Third Party Components
 import ReactPaginate from 'react-paginate'
@@ -12,7 +12,7 @@ import DataTable from 'react-data-table-component'
 // ** Reactstrap Imports
 import { Card, CardHeader, CardTitle } from 'reactstrap'
 
-const DataTableWithButtons = () => {
+const DataTableWithButtons = ({data}) => {
   // ** State
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -44,25 +44,22 @@ const DataTableWithButtons = () => {
       containerClassName={'pagination react-paginate separated-pagination pagination-sm justify-content-end pe-1'}
     />
   )
-
+  
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag='h4'>Состояние агломашин</CardTitle>
+        {/* <CardTitle tag='h4'>Выберите агломашину</CardTitle> */}
       </CardHeader>
       <div className='react-dataTable'>
         <DataTable
           noHeader
           pagination
           data={data}
-          expandableRows
           columns={columns}
-          expandOnRowClicked
           className='react-dataTable'
           sortIcon={<ChevronDown size={10} />}
           paginationComponent={CustomPagination}
           paginationDefaultPage={currentPage + 1}
-          expandableRowsComponent={ExpandableTable}
           paginationRowsPerPageOptions={[10, 25, 50, 100]}
         />
       </div>

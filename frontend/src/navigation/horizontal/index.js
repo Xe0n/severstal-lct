@@ -9,8 +9,8 @@ export default [
   },
   {
     id: "secondPage",
-    title: "Агломашина",
+    title: "Контакты",
     icon: <Mail size={20} />,
-    navLink: "/item"
+    navLink: "/contacts"
   }
 ]

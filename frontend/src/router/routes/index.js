@@ -36,7 +36,7 @@ const Error = lazy(() => import("../../views/Error"))
 //** items */
 const Item = lazy(() => import("../../views/item/index"))
 const Detail = lazy(() => import("../../views/detail/index"))
-
+const Contact = lazy(() => import("../../views/Contact"))
 // ** Merge Routes
 const Routes = [
   {
@@ -87,6 +87,10 @@ const Routes = [
   {
     path: `/detail/:id`,
     element: <Detail />
+  },
+  {
+    path: `/contacts`,
+    element: <Contact />
   }
 ]
 

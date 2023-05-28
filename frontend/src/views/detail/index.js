@@ -15,9 +15,10 @@ const Detail = () => {
     const id = useParams()
     console.log(id.id)
     const [data, setData] = React.useState([])
+    const [defOptions, setDefOptions] = React.useState('masloohloditel_m05_1')
     const [partList, setPartList] = React.useState()
     const [loading, setLoading] = React.useState(false)
-    const [currentPart, setCurrentPart] = React.useState()
+    const [currentPart, setCurrentPart] = React.useState('masloohloditel_m05_1')
     const getData = async (start = '2023-05-24T07:50:00.0003', end = '2023-05-30T11:50:00.0003') => {
       setLoading(true)
       const resp = await $api(`api/wear/exhauster/${id.id}/?startDate=${start}&endDate=${end}`)
@@ -33,19 +34,22 @@ const Detail = () => {
         setPartList(Object.keys(data[1]))
       }
     }, [data])
-    console.log(data)
   return (
     <>
     <Row>
       <Col md={2}>
         <Card className='p-2'>
-        {!loading ? <Form onChange={(e) => setCurrentPart(e.target.value) }>
+        {!loading ? <Form onChange={(e) => {
+          setCurrentPart(e.target.value)
+          setDefOptions(e.target.value)
+          } 
+        }>
           {partList?.map(item => {
             if (item !== 'id' && item !== 'date') {
               return (
                 <div className='demo-inline-spacing' key={item}>
                   <div className='form-check form-check-inline'>
-                    <Input type='radio' name='ex1' id={item} value={item}/>
+                    <Input type='radio' name='ex1' id={item} value={item} defaultChecked={item === defOptions}/>
                     <Label for={item} className='form-check-label break-word'>
                       {item}
                     </Label>

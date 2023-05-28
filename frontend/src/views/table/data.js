@@ -8,39 +8,16 @@ import { Link } from 'react-router-dom'
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, ButtonDropdown } from 'reactstrap'
 
 // ** Vars
-const states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary']
+
 
 const status = {
-  1: { title: 'Отлично', color: 'light-primary' },
+  1: { title: 'В работе', color: 'light-primary' },
   2: { title: 'Professional', color: 'light-success' },
   3: { title: 'Опасно', color: 'light-danger' },
   4: { title: 'Resigned', color: 'light-warning' },
   5: { title: 'Applied', color: 'light-info' }
 }
 
-// ** Get initial Data
-export const data = [
-    {
-        id: 1,
-        title: 'Агломашина 1',
-        status: 1,
-        city: 'cwqrqw',
-        experience: 'hard',
-        post: '1321',
-        avatar: '',
-        temp: 49
-    },
-    {
-        id: 2,
-        title: 'Агломашина 2',
-        status: 3,
-        city: 'cwqrqw',
-        experience: 'hard',
-        post: '1321',
-        avatar: '',
-        temp: 50
-    }
-]
 
 // ** Expandable table component
 const ExpandableTable = ({ data }) => {
@@ -64,64 +41,29 @@ export const columns = [
   {
     name: 'Наименование',
     minWidth: '250px',
-    sortable: row => row.title,
+    sortable: row => row.name,
     cell: row => (
       <div className='d-flex align-items-center'>
-        {row.avatar === '' ? (
-          <Avatar color={`light-${states[row.status]}`} content={row.title} initials />
-        ) : (
-          <Avatar img={require(`@src/assets/images/portrait/small/avatar-s-${row.avatar}`).default} />
-        )}
+          <Avatar color={`light-success`} content={row.name} initials />
         <div className='user-info text-truncate ms-1'>
-          <span className='d-block fw-bold text-truncate'>{row.title}</span>
+          <span className='d-block fw-bold text-truncate'>{row.name}</span>
           <small>{row.post}</small>
         </div>
       </div>
     )
   },
   {
-    name: 'Температура ПС1',
-    selector: row => row.temp
+    name: 'Описание',
+    selector: row => row.description
   },
   {
     name: 'Статус',
     minWidth: '150px',
-    sortable: row => row.status.title,
-    cell: row => {
-      return (
-        <Badge color={status[row.status].color} pill>
-          {status[row.status].title}
-        </Badge>
-      )
-    }
-  },
-  {
-    name: 'Действия',
-    allowOverflow: true,
     cell: () => {
       return (
-        <div className='d-flex'>
-          <UncontrolledDropdown>
-            <DropdownToggle className='pe-1' tag='span'>
-              <MoreVertical size={15} />
-            </DropdownToggle>
-            <DropdownMenu end>
-              <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-                <FileText size={15} />
-                <span className='align-middle ms-50'>Details</span>
-              </DropdownItem>
-              <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-                <Archive size={15} />
-                <span className='align-middle ms-50'>Archive</span>
-              </DropdownItem>
-              <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-                <Trash size={15} />
-                <span className='align-middle ms-50'>Delete</span>
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-          <Edit size={15} />
-        </div>
+        <Badge color={status[1].color} pill>
+          {status[1].title}
+        </Badge>
       )
     }
   },
