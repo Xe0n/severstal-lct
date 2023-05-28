@@ -1,4 +1,4 @@
-import { Mail, Home } from "react-feather"
+import { Mail, Home, FilePlus } from "react-feather"
 
 export default [
   {
@@ -6,6 +6,12 @@ export default [
     title: "Главная",
     icon: <Home size={20} />,
     navLink: "/home"
+  },
+  {
+    id: "secondPage",
+    title: "Новые данные",
+    icon: <FilePlus size={20} />,
+    navLink: "/retrain"
   },
   {
     id: "secondPage",

@@ -17,7 +17,26 @@ const status = {
   4: { title: 'Resigned', color: 'light-warning' },
   5: { title: 'Applied', color: 'light-info' }
 }
-
+const agloMap = {
+  1: {
+    name: 'Эксгаустер №7'
+  },
+  2: {
+    name: 'Эксгаустер №5'
+  },
+  3: {
+    name: 'Эксгаустер №9'
+  },
+  4: {
+    name: 'Эксгаустер №8'
+  },
+  5: {
+    name: 'Эксгаустер №4'
+  },
+  6: {
+    name: 'Эксгаустер №6'
+  }
+}
 
 // ** Expandable table component
 const ExpandableTable = ({ data }) => {
@@ -46,7 +65,7 @@ export const columns = [
       <div className='d-flex align-items-center'>
           <Avatar color={`light-success`} content={row.name} initials />
         <div className='user-info text-truncate ms-1'>
-          <span className='d-block fw-bold text-truncate'>{row.name}</span>
+          <span className='d-block fw-bold text-truncate'>{agloMap[row.id].name}</span>
           <small>{row.post}</small>
         </div>
       </div>

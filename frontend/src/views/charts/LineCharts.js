@@ -17,30 +17,32 @@ const CustomTooltip = ({ active, payload }) => {
   return null
 }
 
+
 const SimpleLineChart = ({ data, target, warning }) => {
   // const newData = data.reduce((acc, el) => {
   //   console.log(acc[el[target]])
   //   acc[el[target]] = (acc[el[target]] || 0) + 1
   //   return acc
   // }, {})
-  if (!target) target = 'id'
-  const codes = Object.entries(data).map(([key, value]) => {
-    // console.log(JSON.parse(value[target]).value)
-    return { id: key, date: value.date, count: JSON.parse(value[target]).value }
-  })
+  // if (!target) target = 'id'
+  // const codes = Object.entries(data).map(([key, value]) => {
+  //   // console.log(JSON.parse(value[target]).value)
+  //   return { id: key, date: value.date, count: JSON.parse(value[target]).status }
+  // })
+  console.log(data)
   return (
-    <Card>
+    <Card className='sticky'>
       <CardHeader>
         <div>
           <CardTitle tag='h4'>Анализ событий M1/M3 на основе исторических данных</CardTitle>
-          <small className='text-muted'>Выберите нужный диапазон и деталь для демонстрации работы. По умолчанию выводится последняя неделя</small>
+          <small className='text-muted'>Выберите нужный диапазон и деталь для демонстрации работы. По умолчанию выводится полный диапазон из файла submission</small>
         </div>
       </CardHeader>
 
       <CardBody>
         <div className='recharts-wrapper'>
           <ResponsiveContainer>
-            <LineChart height={100} data={codes}>
+            <LineChart height={100} data={data}>
               <CartesianGrid />
               <XAxis dataKey='date' />
               <YAxis
@@ -54,7 +56,7 @@ const SimpleLineChart = ({ data, target, warning }) => {
               }
               />
               <Tooltip content={CustomTooltip} />
-              <Line dataKey='count' stroke={warning} strokeWidth={3} />
+              <Line dataKey={target} stroke={warning} strokeWidth={3} />
               <Brush />
             </LineChart>
           </ResponsiveContainer>
