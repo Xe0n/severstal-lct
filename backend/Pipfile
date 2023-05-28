@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "*"
+django-filter = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
+django-cors-headers = "*"
+pillow = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+requests = "*"
+pytest-django = "*"
+boto3 = "==1.11.9"
+django-storages = "==1.8"
+redis="*"
+djangorestframework-simplejwt = "*"
+djangorestframework = "*"
+drf-yasg = "*"
+django-rest-swagger = "*"
+datetime = "*"
+
+[requires]
+python_version = "3.7"

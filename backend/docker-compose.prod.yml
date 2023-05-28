@@ -1,0 +1,47 @@
+version: '3'
+
+volumes:
+  static_volume:
+  letsencrypt:
+  data:
+  .:
+
+services:
+
+  web:
+    build: .
+    image: registry.gitlab.com/bapp/bapp:latest
+    container_name: bapp_app
+    env_file:
+      - .env
+    volumes:
+      - static_volume:/web/app/static
+      - .:/web
+    expose:
+      - 4000
+
+  db:
+    image: kartoza/postgis:11.0-2.5
+    container_name: bapp_db
+    env_file:
+      - .env
+    volumes:
+      - data:/var/lib/postgresql/
+    expose:
+      - 5432
+
+  nginx:
+    image: staticfloat/nginx-certbot
+    container_name: bapp_nginx_certbot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/user.conf.d/nginx.conf:ro
+      - static_volume:/web/app/static
+      - letsencrypt:/etc/letsencrypt
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+    depends_on:
+      - web
