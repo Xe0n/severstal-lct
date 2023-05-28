@@ -1,6 +1,6 @@
 # severstal-lct
 # frontend setup
-Демо дашборда доступно по адресу http://severstal.kobix.ru/, но вы можете запустить локальную копию у себя.
+## Демо дашборда доступно по адресу http://severstal.kobix.ru/, но вы можете запустить локальную копию у себя.
     cd /frontend
     yarn install
     yarn start
