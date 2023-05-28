@@ -14,7 +14,7 @@ export default [
     navLink: "/retrain"
   },
   {
-    id: "secondPage",
+    id: "threePage",
     title: "Контакты",
     icon: <Mail size={20} />,
     navLink: "/contacts"

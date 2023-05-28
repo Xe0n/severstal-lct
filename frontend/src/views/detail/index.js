@@ -3,7 +3,7 @@ import $api from '../../http'
 import { useParams } from 'react-router-dom'
 import { descript } from './lang-map'
 import SimpleLineChart from '../charts/LineCharts'
-import { Card, CardHeader, CardBody, Row, Col, Form, Input, Label, Spinner } from 'reactstrap'
+import { Card, CardHeader, CardBody, Row, Col, Form, Input, Label, Spinner, Badge  } from 'reactstrap'
 
 import Flatpickr from 'react-flatpickr'
 import { Calendar } from 'react-feather'
@@ -57,7 +57,6 @@ const Detail = () => {
       // const dataObject = JSON.parse(resp.data.statistics)
       setData(resp.data.statistics)
       setDateReady(prepareChartData(resp.data.statistics))
-      console.log(dateReady)
       setLoading(false)
     }
   
@@ -74,9 +73,9 @@ const Detail = () => {
   return (
     <>
     <Row>
-      <Col md={3}>
+      <Col md={3} >
        
-        <Card className='p-2'>
+        <Card className='p-2 scroll-fix'>
         <h4>Выберите деталь</h4>
         {!loading ? <Form onChange={(e) => {
           setCurrentPart(e.target.value)
@@ -85,12 +84,25 @@ const Detail = () => {
         }>
           {partList?.map(item => {
             if (item !== 'id' && item !== 'date') {
+              let m1 = false
+              let m3 = false
               return (
                 <div className='demo-inline-spacing' key={item}>
                   <div className='form-check form-check-inline'>
                     <Input type='radio' name='ex1' id={item} value={item} defaultChecked={item === defOptions}/>
                     <Label for={item} className='form-check-label break-word'>
                       {descript[item]?.name ? descript[item].name : item}
+                      {dateReady.map(val => {
+                        if (val[item] === 3 && !m1) {
+                          m1 = true
+                          return <Badge color='danger' className='ms-1'>M3</Badge>
+                        }
+                        if (val[item] === 1  && !m3) {
+                          m3 = true
+                          return <Badge color='warning' className='ms-1'>M1</Badge>
+                        }
+                      }
+                      )}
                     </Label>
                   </div>
                 </div>
