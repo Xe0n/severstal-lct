@@ -5,7 +5,7 @@
 в cd ввести команды  
 
 ## для запуска проекта:  
-```docker-compose up —build```  
+    docker-compose up —build  
 ## для проведения миграций:  
     docker-compose exec web /bin/sh  
     pipenv run python manage.py makemigrations  
